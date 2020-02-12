@@ -130,18 +130,18 @@ void loop()
   
 
   
-//    // DHT22/11 Humidity and Temperature Sensor - Test Code
-//    // Reading humidity in %
-//    float dhtHumidity = dht.readHumidity();
-//    delay(1000);
-//    // Read temperature in Celsius, for Fahrenheit use .readTempF()
-//    float dhtTempC = dht.readTempC();
-//    delay(1000);
-//    Serial.print(F("Kelembaban Udara: ")); 
-//    Serial.print(dhtHumidity); 
-//    Serial.println(F(" [%]\t"));
-//    Serial.print(F("Temperatur Udara: ")); 
-//    Serial.print(dhtTempC); Serial.println(F(" [C]"));
+    // DHT22/11 Humidity and Temperature Sensor - Test Code
+    // Reading humidity in %
+    float dhtHumidity = dht.readHumidity();
+    delay(1000);
+    // Read temperature in Celsius, for Fahrenheit use .readTempF()
+    float dhtTempC = dht.readTempC();
+    delay(1000);
+    Serial.print(F("Kelembaban Udara: ")); 
+    Serial.print(dhtHumidity); 
+    Serial.println(F(" [%]\t"));
+    Serial.print(F("Temperatur Udara: ")); 
+    Serial.print(dhtTempC); Serial.println(F(" [C]"));
 
 
 
@@ -160,12 +160,12 @@ void loop()
 //
 //    // MQ-135 Hazardous Gas Sensor - Test Code
 //    // Reading Gas in %
-//    float mqPPM = mq.getPPM();
-//    delay(1000);
-//    float mqResistance = mq.getResistance();
-//    delay(1000);
-//    Serial.print(("Indeks Gas Beracun: ")); Serial.print(mqPPM); Serial.print((" [Ppm]\t"));
-//    Serial.print(("Resistansi: ")); Serial.print(mqResistance); Serial.println((" [R]"));
+    float mqPPM = mq.getPPM();
+    delay(1000);
+    float mqResistance = mq.getResistance();
+    delay(1000);
+    Serial.print(("Indeks Gas Beracun: ")); Serial.print(mqPPM); Serial.print((" [Ppm]\t"));
+    Serial.print(("Resistansi: ")); Serial.print(mqResistance); Serial.println((" [R]"));
 //
 //
     // MQ-2 LPG Gas Sensor - Test Code
@@ -178,14 +178,14 @@ void loop()
     Serial.print(("Asap: ")); Serial.print(mq2readSmoke); Serial.println((" [Ppm]"));
 //
 //
-////     MQ-9 Carbon Monoxide, and Methane gas - Test Code
-////     Reading Gas in %
-//    float mq9readCO = mq9.readCO();
-//    delay(1000);
-////    float mq9readMethane = mq9.getMethane_ppm();
-//    Serial.print(("Karbon Monoksida: ")); Serial.print(mq9readCO); Serial.println((" [Ppm]\t"));
-////  Serial.print(("Methane: ")); Serial.print(mq9readMethane); Serial.println((" [Ppm]"));
-////    }
+//     MQ-9 Carbon Monoxide, and Methane gas - Test Code
+//     Reading Gas in %
+    float mq9readCO = mq9.readCO();
+    delay(1000);
+    float mq9readMethane = mq9.getMethane_ppm();
+    Serial.print(("Karbon Monoksida: ")); Serial.print(mq9readCO); Serial.println((" [Ppm]\t"));
+  Serial.print(("Methane: ")); Serial.print(mq9readMethane); Serial.println((" [Ppm]"));
+//    }
 ////    
 //    digitalWrite(ledPower,LOW); // power on the LED
 //  delayMicroseconds(samplingTime);
