@@ -2,8 +2,8 @@
 #include "Arduino.h"
 #include "DHT.h"
 #include "MQ135.h"
-#include "MQ2.h"
-//#include "MQ9.h"
+//#include "MQ2.h"
+#include "MQ9.h"
 #include <SPI.h>
 #include <Ethernet.h>
 //#include "mbed.h"
@@ -23,6 +23,7 @@ DHT dht(DHT_PIN_DATA);
 MQ135 mq(MQ135_5V_PIN_AOUT);
 MQ2 mq2(MQ2_5V_PIN_AOUT);
 MQ2 mq9(MQ9_5V_PIN_AOUT);
+MQ9 mq9(MQ9_5V_PIN_AOUT);
 
 
 float humidityData;
@@ -32,6 +33,7 @@ float smokeData;
 float mqPPM;
 float mqResistance;
 float mq2readCO;
+float mq2readMethane;
 float mq9readMethane;
 
 float rs;
@@ -146,7 +148,8 @@ void loop(){
 //
    //MQ9
    mq2readCO = mq2.readCO();
-//   mq9readMethane = mq9.getMethane_ppm();
+//   mq2readMethane = mq2.getMethane_ppm();
+   mq9readMethane = mq9.getMethane_ppm();
 
 //   float MQ9::getCO_ppm()
 //{
@@ -206,8 +209,8 @@ void loop(){
     Serial.println(mq2readCO);
 //    client.print("&nilai_gas_metana");
 //    Serial.println("&nilai_gas_metana");
-//    client.print(mq9readMethane);
-//    Serial.println(mq9readMethane);
+//    client.print(mq2readMethane);
+//    Serial.println(mq2readMethane);
 
 
     

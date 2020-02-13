@@ -3,6 +3,8 @@
 
 //variable private
 const int sensorPin = A1;
+//int sensorPin = A1; //pin sensor soil moisture
+
 int sensorValue = 0;
 float outputValue = 0.0;
 
@@ -26,11 +28,17 @@ void loop() {
   //print the results to the serial monitor:
   Serial.print("sensor ADC= ");
   Serial.print(sensorValue);
-  Serial.print("  output Ph= ");
-  Serial.print(outputValue);
+  Serial.print(" output Ph= ");
+  Serial.println(outputValue);
   
-  Serial.print("Kelembaban tanah = ");
+  Serial.print(" Kelembaban tanah = ");
   Serial.print(kelembaban_tanah);
-  Serial.print("%\n\n");
+  Serial.println("%");
+
+// sensorValue = analogRead(sensorPin);
+// delay(1000);
+// Serial.print("Kelembapan Tanah = " );
+// Serial.println(sensorValue); 
+//  Serial.print("%\n\n");
   delay(1000);
 }
