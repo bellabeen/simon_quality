@@ -15,7 +15,6 @@ class Sensor{
     private $nilai_karbonmonoksida=null;
     private $nilai_gas_metana=null;
     private $konsentrasi_debu=null;
-
     function __construct(){
         if ($this->db ==  null){
             $conn = new DB();
@@ -170,6 +169,21 @@ class Sensor{
         return array("msg"=>"success", "data"=>$data);
     }
 
+    function getHumidity(){
+        // return "test";
+        $kueri = "SELECT humidity, temperature, curdate() FROM ".$this->table_name." ORDER BY id";
+        $hasil = $this->db->query($kueri) or die ("Error ".$this->db->connect_error);
+        http_response_code(200);
+        $data = array();
+        while ($row = $hasil->fetch_assoc()){
+            $data[]=$row;
+        }
+        if (count($data)==0)
+            return array("msg"=>"Data tidak ada ", "data"=>array());
+        return array("msg"=>"success", "data"=>$data);
+    }
+
+
     function getSensorPilihan($id){
         // return "test";
         $kueri = "SELECT * FROM ".$this->table_name;
@@ -184,6 +198,10 @@ class Sensor{
             return array("msg"=>"Data tidak ada ", "data"=>array());
         return array("msg"=>"success", "data"=>$data);
     }
+    
+
+    
+
 
     ///fungsi delete data
     function delete($id){

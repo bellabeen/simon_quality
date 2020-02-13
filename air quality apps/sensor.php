@@ -10,9 +10,9 @@ class Sensor{
  }
  
  function connect(){
-    $this->link = mysqli_connect('fdb26.awardspace.net','3074218_latihanarjun','latihanarjun1') 
+    $this->link = mysqli_connect('localhost','bellabeen','kepoajalu') 
     or die('Cannot connect to the DB');
-    mysqli_select_db($this->link,'3074218_latihanarjun') or die('Cannot select the DB');
+    mysqli_select_db($this->link,'quality') or die('Cannot select the DB');
  }
  
  function storeInDB($temperature, $humidity, $nilai_amonia_sulfida_benzena, $resistansi_amonia_sulfida_benzena, 
