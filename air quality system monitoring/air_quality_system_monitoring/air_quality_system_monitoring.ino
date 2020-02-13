@@ -22,7 +22,7 @@ byte mac[] = { 0x98, 0xDA, 0xC4, 0x99, 0x7A, 0xE6 }; //Setting MAC Address
 DHT dht(DHT_PIN_DATA);
 MQ135 mq(MQ135_5V_PIN_AOUT);
 MQ2 mq2(MQ2_5V_PIN_AOUT);
-//MQ9 mq9(MQ9_5V_PIN_AOUT);
+MQ2 mq9(MQ9_5V_PIN_AOUT);
 
 
 float humidityData;
@@ -31,7 +31,7 @@ float LPGData;
 float smokeData;
 float mqPPM;
 float mqResistance;
-float mq9readCO;
+float mq2readCO;
 float mq9readMethane;
 
 float rs;
@@ -144,8 +144,8 @@ void loop(){
    LPGData = mq2.readLPG();
    smokeData = mq2.readSmoke();
 //
-//   //MQ9
-//   mq9readCO = mq9.readCO();
+   //MQ9
+   mq2readCO = mq2.readCO();
 //   mq9readMethane = mq9.getMethane_ppm();
 
 //   float MQ9::getCO_ppm()
@@ -166,8 +166,8 @@ void loop(){
    if (client.connect(server, 80)) {
     Serial.println("connected");
     // Make a HTTP request:
-    Serial.print("GET /testcode/sensor.php?humidity=");
-    client.print("GET /testcode/sensor.php?humidity=");     //YOUR URL
+    Serial.print("GET /simon-server/sensor/create.php?humidity=");
+    client.print("GET /simon-server/sensor/create.php?humidity=");     //YOUR URL
 
     //DHT11
     Serial.println(humidityData);
@@ -202,12 +202,12 @@ void loop(){
     //MQ9
     client.print("&nilai_karbonmonoksida=");
     Serial.println("&nilai_karbonmonoksida=");
-    client.print(mq9readCO);
-    Serial.println(mq9readCO);
-    client.print("&nilai_gas_metana");
-    Serial.println("&nilai_gas_metana");
-    client.print(mq9readMethane);
-    Serial.println(mq9readMethane);
+    client.print(mq2readCO);
+    Serial.println(mq2readCO);
+//    client.print("&nilai_gas_metana");
+//    Serial.println("&nilai_gas_metana");
+//    client.print(mq9readMethane);
+//    Serial.println(mq9readMethane);
 
 
     

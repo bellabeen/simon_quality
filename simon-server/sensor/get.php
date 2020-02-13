@@ -6,7 +6,7 @@ $sensor = new Sensor();
 if(isset($_GET['id'])){
     $data=$sensor->getSensorPilihan($_GET['id']);
 } else {
-    $data=$sensor->getHumidity();
+    $data=$sensor->getAll();
 }
 $format=new DataFormat();
 

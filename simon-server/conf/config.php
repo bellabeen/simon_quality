@@ -1,6 +1,6 @@
 <?php
-define("DB_HOST","localhost");
-define("DB_USER","bellabeen");
-define("DB_PASSWORD","kepoajalu");
-define("DB_NAME","quality");
+define("DB_HOST","fdb26.awardspace.net");
+define("DB_USER","3074218_latihanarjun");
+define("DB_PASSWORD","latihanarjun1");
+define("DB_NAME","3074218_latihanarjun");
 ?>
