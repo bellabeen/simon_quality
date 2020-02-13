@@ -169,9 +169,14 @@ class Sensor{
         return array("msg"=>"success", "data"=>$data);
     }
 
+
+
     function getHumidity(){
         // return "test";
-        $kueri = "SELECT humidity, temperature, curdate() FROM ".$this->table_name." ORDER BY id";
+        $kueri = "SELECT " .$this->humidity ."',";
+        $kueri = "FROM ".$this->table_name." ORDER BY id";
+
+        // $kueri = "SELECT humidity, temperature, curdate() FROM ".$this->table_name." ORDER BY id";
         $hasil = $this->db->query($kueri) or die ("Error ".$this->db->connect_error);
         http_response_code(200);
         $data = array();
