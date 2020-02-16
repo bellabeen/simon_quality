@@ -1,5 +1,5 @@
 <?php
-include_once(__DIR__."/../lib/sensor.php");
+include_once(__DIR__."/../lib/udara.php");
 include_once(__DIR__."/../lib/DataFormat.php");
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");

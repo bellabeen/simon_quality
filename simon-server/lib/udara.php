@@ -1,7 +1,7 @@
 <?php
 include_once (__DIR__ . "/DB.php");
 class Sensor{
-    private $table_name='log';
+    private $table_name='udara';
     private $db = null;
     public  $id;
     private $humidity=null;
