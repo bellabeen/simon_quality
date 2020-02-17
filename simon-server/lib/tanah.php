@@ -129,6 +129,22 @@ class Sensor{
         return array("data"=>$data);
     }
 
+    function getSuhu(){
+        // SELECT ph FROM table ORDER BY DESC LIMIT 1
+
+        // return "test";
+        $kueri = "SELECT suhu FROM ".$this->table_name." ORDER BY waktu DESC LIMIT 1";
+        $hasil = $this->db->query($kueri) or die ("Error ".$this->db->connect_error);
+        http_response_code(200);
+        $data = array();
+        while ($row = $hasil->fetch_assoc()){
+            $data[]=$row;
+        }
+        if (count($data)==0)
+            return array("msg"=>"Data tidak ada ", "data"=>array());
+        return array("data"=>$data);
+    }
+
 
     function getSensorPilihan($id){
         // return "test";

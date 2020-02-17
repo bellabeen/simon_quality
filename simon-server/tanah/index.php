@@ -4,16 +4,12 @@ include_once(__DIR__."/../lib/DataFormat.php");
 header('Access-Control-Allow-Origin:*');
 $sensor = new Sensor();
 $format=new DataFormat();
-$data=$sensor->getpH();
+// $data=$sensor->getpH();
 
-$url = file_get_contents("../tanah/tanah.json");
-$array = json_decode($url, true);
-$resultArray = isset($array['data']) ? $array['data'] : [];
-echo 'pH : ' . $resultArray['1']['ph'];
 // $file = file_get_contents("../tanah/tanah.json");
 // $array = json_decode($file, true);
 // $resultArray = isset($array['data']) ? $array['data'] : [];
-?>
+// ?>
 <html>
 	<head>
 		<title>Sistem Monitoring</title>
@@ -69,7 +65,14 @@ echo 'pH : ' . $resultArray['1']['ph'];
 						<td><center><p class="tebel" style="margin-top:0px; margin-bottom:0px; font-size:18px">Suhu (&degC)</p></center></td>
 					</thead>
 					<tr class="success">
-						<td><center><p class="tebel gede" style="margin-top:5px">30</p></center></td>
+					<?php 
+					$url = file_get_contents("../tanah/suhu.json");
+					$array = json_decode($url, true);
+					$resultArray = isset($array['data']) ? $array['data'] : [];
+					foreach ($resultArray as $ph){
+						echo '<td><center><p class="tebel gede"style="margin-top:5px"> '.(isset($ph['suhu']) ? $ph['suhu'] : '-') .'</p></center></td>';
+
+						}?>
 					</tr>
 				</table>
 			</div>
@@ -100,7 +103,11 @@ echo 'pH : ' . $resultArray['1']['ph'];
 					</thead>
 					
 					<tr class="success">
-					<?php foreach ($resultArray as $ph){
+					<?php 
+					$url = file_get_contents("../tanah/ph.json");
+					$array = json_decode($url, true);
+					$resultArray = isset($array['data']) ? $array['data'] : [];
+					foreach ($resultArray as $ph){
 						echo '<td><center><p class="tebel gede"style="margin-top:5px"> '.(isset($ph['ph']) ? $ph['ph'] : '-') .'</p></center></td>';
 
 						}?>

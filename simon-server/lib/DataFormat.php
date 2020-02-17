@@ -36,4 +36,10 @@ class DataFormat{
 		file_put_contents('ph.json', $json_data);
 		return json_encode($data);
 	}
+
+	function asJSONSuhu($data){
+		$json_data = json_encode($data);
+		file_put_contents('suhu.json', $json_data);
+		return json_encode($data);
+	}
 }
