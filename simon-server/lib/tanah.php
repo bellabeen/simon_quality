@@ -113,9 +113,11 @@ class Sensor{
     }
 
 
-    function getHumidity(){
+    function getpH(){
+        // SELECT ph FROM table ORDER BY DESC LIMIT 1
+
         // return "test";
-        $kueri = "SELECT HOUR(date) FROM ".$this->table_name." ORDER BY id";
+        $kueri = "SELECT ph FROM ".$this->table_name." ORDER BY waktu DESC LIMIT 1";
         $hasil = $this->db->query($kueri) or die ("Error ".$this->db->connect_error);
         http_response_code(200);
         $data = array();
@@ -124,7 +126,7 @@ class Sensor{
         }
         if (count($data)==0)
             return array("msg"=>"Data tidak ada ", "data"=>array());
-        return array("msg"=>"success", "data"=>$data);
+        return array("data"=>$data);
     }
 
 
