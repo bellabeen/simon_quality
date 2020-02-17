@@ -1,4 +1,23 @@
+<?php
 
+include_once(__DIR__."/../lib/tanah.php");
+include_once(__DIR__."/../lib/DataFormat.php");
+header('Access-Control-Allow-Origin:*');
+$sensor = new Sensor();
+$file = file_get_contents("../tanah/myfile.json");
+$array = json_decode($file, true);
+$resultArray = isset($array['data']) ? $array['data'] : [];
+<?php foreach($resultArray as $result){
+	echo '<tr>';
+	$no;
+	echo '<td>$no++</td>';
+	echo '<td>'.(isset($result['suhu']) ? $result['suhu'] : '-') .'</td>';
+	echo '<td>'.(isset($result['kelembapan_tanah']) ? $result['kelembapan_tanah'] : '-') .'</td>';
+	echo '<td>'.(isset($result['ph']) ? $result['ph'] : '-') .'</td>';
+	echo '<td>'.(isset($result['waktu']) ? $result['waktu'] : '-') .'</td>';
+	echo '</tr>';
+	}?>
+?>
 <html>
 	<head>
 		<title>Monitoring Suhu GGP</title>
@@ -47,19 +66,41 @@
   					</div>
 				</div>	
 			</div>
+			<!-- echo '<table>';
+foreach($resultArray as $result){
+        echo '<tr>';
+        echo '<td>'.(isset($result['id']) ? $result['id'] : '-') .'</td>';
+        echo '<td>'.(isset($result['attributes']['name']) ? $result['attributes']['name'] : '-').'</td>';
+        echo '<td>'.(isset($result['attributes']['description']) ? $result['attributes']['description'] : '-').'</td>';
+        echo '<td>'.(isset($result['attributes']['funded_year']) ? $result['attributes']['funded_year'] : '-').'</td>';
+        echo '</tr>';
+}
+echo '</table>'; -->
 			<div class="col-md-6">
 				<p class="tebel">Tabel Data Suhu:</p>
 				<table class="table table-striped table-bordered">
 					<thead>
-						<td><center><p class="tebel" style="margin-top:0px; margin-bottom:0px;">Tanggal</p></center></td>
+						<td><center><p class="tebel" style="margin-top:0px; margin-bottom:0px;">No</p></center></td>
 						<td><center><p class="tebel" style="margin-top:0px; margin-bottom:0px;">Suhu (&degC)</p></center></td>
-						<td><center><p class="tebel" style="margin-top:0px; margin-bottom:0px;">RH (%)</p></center></td>
+						<td><center><p class="tebel" style="margin-top:0px; margin-bottom:0px;">Kelembapan Tanah</p></center></td>
+						<td><center><p class="tebel" style="margin-top:0px; margin-bottom:0px;">pH</p></center></td>
+						<td><center><p class="tebel" style="margin-top:0px; margin-bottom:0px;">Waktu</p></center></td>
+						<?php foreach($resultArray as $result){
+						echo '<tr>';
+						$no;
+						echo '<td>$no++</td>';
+						echo '<td>'.(isset($result['suhu']) ? $result['suhu'] : '-') .'</td>';
+						echo '<td>'.(isset($result['kelembapan_tanah']) ? $result['kelembapan_tanah'] : '-') .'</td>';
+						echo '<td>'.(isset($result['ph']) ? $result['ph'] : '-') .'</td>';
+						echo '<td>'.(isset($result['waktu']) ? $result['waktu'] : '-') .'</td>';
+						echo '</tr>';
+						}?>
 					</thead>
 					<tbody>
 
 
                     </tbody>
-				</table>
+				<?php '</table>' ?>
 			</div>
 		</div>
 	</body>

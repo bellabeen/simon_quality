@@ -25,9 +25,9 @@ class DataFormat{
         return $html;
 	}
 
-	function asJSONEncode($data){
+	function asJSONTanah($data){
 		$json_data = json_encode($data);
-		file_put_contents('myfile.json', $json_data);
+		file_put_contents('tanah.json', $json_data);
 		return json_encode($data);
 	}
 }

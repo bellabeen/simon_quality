@@ -40,10 +40,10 @@ $sensor = new Sensor();
 
 $file = file_get_contents("../tanah/myfile.json");
 $json_data = json_decode($file, true);
-echo $json_data[0]->id;
-// foreach ($json_data as $k=>$v) {
-//             echo $k . ' : ' . $v . '<br />';
-// }
+
+foreach ($json_data as $k=>$v) {
+            echo $k . ' : ' . $v . '<br />';
+}
 
 //     $html = "echo";
 //     // $html .= "<table border='1'>";

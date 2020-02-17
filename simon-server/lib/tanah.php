@@ -109,7 +109,7 @@ class Sensor{
         if(count($data)==0)
             return array("msg"=>"Data Tidak Ada", "data"=>array());
         
-        return array("msg"=>"success", "data"=>$data);
+        return array("data"=>$data);
     }
 
 

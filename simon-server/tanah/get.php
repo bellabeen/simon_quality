@@ -14,6 +14,6 @@ $format=new DataFormat();
 $view = isset($_GET['view']) ? $_GET['view']: null;
 // $view = isset($_GET['view']) ? strtotime($_GET['view']:
 
-echo $format->asJSONEncode($data);
+echo $format->asJSONTanah($data);
 
 // SELECT `humidity` AS `humidity` , `temperature` AS `temperature` FROM log

@@ -3,20 +3,26 @@ include_once(__DIR__."/../lib/tanah.php");
 include_once(__DIR__."/../lib/DataFormat.php");
 header('Access-Control-Allow-Origin:*');
 $sensor = new Sensor();
-$data=$sensor->getAll();
-if(isset($_GET['id'])){
-    $data=$sensor->getTanahPilihan($_GET['id']);
-} else {
-    
-}
 $format=new DataFormat();
+$data=$sensor->getAll();
+// if(isset($_GET['id'])){
+//     $data=$sensor->getTanahPilihan($_GET['id']);
+// } else {
+    
+// }
 
 
-$view = isset($_GET['view']) ? $_GET['view']: null;
-// $view = isset($_GET['view']) ? strtotime($_GET['view']:
 
-echo $format->asJSONEncode($data);
+// $view = isset($_GET['view']) ? $_GET['view']: null;
+// // $view = isset($_GET['view']) ? strtotime($_GET['view']:
 
+echo $format->asJSONTanah($data);
+
+$file = file_get_contents("../tanah/myfile.json");
+$array = json_decode($file, true);
+$resultArray = isset($array['data']) ? $array['data'] : [];
+
+?>
 
 
 ?>

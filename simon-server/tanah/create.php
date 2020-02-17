@@ -14,8 +14,6 @@ $suhu = isset($_GET['suhu']) ? $_GET['suhu']: null;
 $kelembapan_tanah = isset($_GET['kelembapan_tanah']) ? $_GET['kelembapan_tanah']: null;
 $ph = isset($_GET['ph']) ? $_GET['ph']: null;
 
-
-
 $sensor->setValue($suhu, $kelembapan_tanah, $ph);
 $result = $sensor->create();
 $format= new DataFormat();
