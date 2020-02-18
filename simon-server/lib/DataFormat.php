@@ -27,19 +27,13 @@ class DataFormat{
 
 	function asJSONAll($data){
 		$json_data = json_encode($data);
-		file_put_contents('tanah.json', $json_data);
+		file_put_contents('../.json/tanah.json', $json_data);
 		return json_encode($data);
 	}
 
 	function asJSONpH($data){
 		$json_data = json_encode($data);
-		file_put_contents('ph.json', $json_data);
-		return json_encode($data);
-	}
-
-	function asJSONSuhu($data){
-		$json_data = json_encode($data);
-		file_put_contents('suhu.json', $json_data);
+		file_put_contents('../.json/ph.json', $json_data);
 		return json_encode($data);
 	}
 }

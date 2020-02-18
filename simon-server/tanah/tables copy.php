@@ -4,10 +4,22 @@ include_once(__DIR__."/../lib/tanah.php");
 include_once(__DIR__."/../lib/DataFormat.php");
 header('Access-Control-Allow-Origin:*');
 $sensor = new Sensor();
-$format=new DataFormat();
-$get=$sensor->getAll();
-$resultArray = isset($get['data']) ? $get['data'] : [];
-?>
+
+// http://localhost:3000/simon-server/tanah/getAll.php?view=json
+// ../tanah/tanah.json
+$file = file_get_contents('../tanah/.json/tanah.json');
+$array = json_decode($file, true);
+$resultArray = isset($array['data']) ? $array['data'] : [];
+// <?php foreach($resultArray as $result){
+// 	echo '<tr>';
+// 	$no;
+// 	echo '<td>$no++</td>';
+// 	echo '<td>'.(isset($result['suhu']) ? $result['suhu'] : '-') .'</td>';
+// 	echo '<td>'.(isset($result['kelembapan_tanah']) ? $result['kelembapan_tanah'] : '-') .'</td>';
+// 	echo '<td>'.(isset($result['ph']) ? $result['ph'] : '-') .'</td>';
+// 	echo '<td>'.(isset($result['waktu']) ? $result['waktu'] : '-') .'</td>';
+// 	echo '</tr>';
+// 	}?>
 <html>
 	<head>
 		<title>Monitoring Suhu GGP</title>
@@ -54,7 +66,7 @@ $resultArray = isset($get['data']) ? $get['data'] : [];
 						</tr>";
 						}
 						?>
-					</tbody>
+                    </tbody>
 				</table>
 			</div>
 		</div>

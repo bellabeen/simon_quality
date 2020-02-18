@@ -5,21 +5,19 @@ header('Access-Control-Allow-Origin:*');
 $sensor = new Sensor();
 $format=new DataFormat();
 
-$getAll=$sensor->getAll();
-$resultAll= isset($getAll['data']) ? $getAll['data'] : [];
+// $data=$sensor->getpH();
 
-
-$getFilter=$sensor->getAllFilter();
-$resultFilter = isset($getFilter['data']) ? $getFilter['data'] : [];
-
-$getWaktu=$sensor->getnData();
-$resultWaktu = isset($getWaktu['data']) ? $getWaktu['data']: [];
-?>
+// $file = file_get_contents("../tanah/tanah.json");
+// $array = json_decode($file, true);
+// $resultArray = isset($array['data']) ? $array['data'] : [];
+// ?>
 <html>
 	<head>
 		<title>Sistem Monitoring</title>
 		<link rel="stylesheet" href="./include/css/style.css">
 		<link rel="stylesheet" href="./include/css/bootstrap.css">
+		
+		
 	</head>
 	<body>
 	<?php include "master/header.php" ?>
@@ -35,21 +33,20 @@ $resultWaktu = isset($getWaktu['data']) ? $getWaktu['data']: [];
   					</div>
 				</div>
 			</div>
-			<?php
-				foreach($resultFilter as $result){
-					$result['suhu'];
-					$result['kelembapan_tanah'];
-					$result['ph'];
-					$result['waktu'];
-				}
-			?>
 			<div class="col-md-3">
 				<table class="table table-bordered">
 					<thead>
 						<td><center><p class="tebel" style="margin-top:0px; margin-bottom:0px; font-size:18px">Suhu (&degC)</p></center></td>
 					</thead>
 					<tr class="success">
-					<td><center><p class="tebel gede" style="margin-top:5px"><?php echo "$result[suhu]";?></p></center></td>
+					<?php 
+					$url = file_get_contents("../tanah/.json/suhu.json");
+					$array = json_decode($url, true);
+					$resultArray = isset($array['data']) ? $array['data'] : [];
+					foreach ($resultArray as $ph){
+						echo '<td><center><p class="tebel gede"style="margin-top:5px"> '.(isset($ph['suhu']) ? $ph['suhu'] : '-') .'</p></center></td>';
+
+						}?>
 					</tr>
 				</table>
 			</div>
@@ -59,7 +56,7 @@ $resultWaktu = isset($getWaktu['data']) ? $getWaktu['data']: [];
 						<td><center><p class="tebel" style="margin-top:0px; margin-bottom:0px; font-size:18px">Kelembapan Tanah (%)</p></center></td>
 					</thead>
 					<tr class="info">
-					<td><center><p class="tebel gede" style="margin-top:5px"><?php echo "$result[kelembapan_tanah]";?></p></center></td>
+						<td><center><p class="tebel gede" style="margin-top:5px">79</p></center></td>
 					</tr>
 				</table>
 			</div>
@@ -69,7 +66,14 @@ $resultWaktu = isset($getWaktu['data']) ? $getWaktu['data']: [];
 						<td><center><p class="tebel" style="margin-top:0px; margin-bottom:0px; font-size:18px">pH (&degC)</p></center></td>
 					</thead>
 					<tr class="warning">
-					<td><center><p class="tebel gede" style="margin-top:5px"><?php echo "$result[ph]";?></p></center></td>
+					<?php 
+					$url = file_get_contents("../tanah/.json/ph.json");
+					$array = json_decode($url, true);
+					$resultArray = isset($array['data']) ? $array['data'] : [];
+					foreach ($resultArray as $ph){
+						echo '<td><center><p class="tebel gede"style="margin-top:5px"> '.(isset($ph['ph']) ? $ph['ph'] : '-') .'</p></center></td>';
+
+						}?>
 					</tr>
 				</table>
 			</div>
@@ -81,7 +85,7 @@ $resultWaktu = isset($getWaktu['data']) ? $getWaktu['data']: [];
 						<tr>
 							<td>Last Update</td>
 							<td>:</td>
-							<td><?php echo "$result[waktu]";?></td>
+							<td>2018-11-18 13:32:46</td>
 						</tr>
 						<tr>
 							<td>Interval Update</td>
@@ -91,10 +95,7 @@ $resultWaktu = isset($getWaktu['data']) ? $getWaktu['data']: [];
 						<tr>
 							<td>Jumlah Data</td>
 							<td>:</td>
-							<td>
-							<?php echo $resultWaktu[0]['jumlah'];?>
-							</td>
-							
+							<td>2022</td>
 						</tr>
 					</table>
 			</div>

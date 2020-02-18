@@ -28,7 +28,7 @@ class Sensor{
     ///fungsi pennyimpanan data berhasil atau tidak
     function create(){
         // $count = count($this->getBukuPilihan($this->kode_buku));
-        $bk= $this->getTanahPilihan($this->id);
+        $bk= $this->getSensorPilihan($this->id);
         $count = count($bk["data"]);
         if ($count>0) {
             http_response_code(503);
@@ -96,10 +96,9 @@ class Sensor{
         }
     }
     
-
     function getAll(){
         // return "test";
-        $kueri = "SELECT * FROM ".$this->table_name." ORDER BY id";
+        $kueri = "SELECT * FROM ".$this->table_name." ORDER BY waktu DESC";
         $hasil = $this->db->query($kueri) or die ("Error ".$this->db->connect_error);
         http_response_code(200);
         $data = array();
@@ -110,6 +109,35 @@ class Sensor{
             return array("msg"=>"Data Tidak Ada", "data"=>array());
         
         return array("data"=>$data);
+    }
+
+    function getAllFilter(){
+        // return "test";
+        $kueri = "SELECT * FROM ".$this->table_name." ORDER BY waktu DESC LIMIT 1";
+        $hasil = $this->db->query($kueri) or die ("Error ".$this->db->connect_error);
+        http_response_code(200);
+        $data = array();
+        while ($row = $hasil->fetch_assoc()){
+            $data[]=$row;
+        }
+        if(count($data)==0)
+            return array("msg"=>"Data Tidak Ada", "data"=>array());
+        
+        return array("data"=>$data);
+    }
+
+    function getnData(){
+                // return "test";
+                $kueri = "SELECT COUNT(*) AS jumlah FROM ".$this->table_name."";
+                $hasil = $this->db->query($kueri) or die ("Error ".$this->db->connect_error);
+                http_response_code(200);
+                $data = array();
+                while ($row = $hasil->fetch_assoc()){
+                    $data[]=$row;
+                }
+                if(count($data)==0)
+                    return array("msg"=>"Data Tidak Ada", "data"=>array());
+                return array("data"=>$data);
     }
 
 
