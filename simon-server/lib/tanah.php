@@ -98,7 +98,7 @@ class Sensor{
     
     function getAll(){
         // return "test";
-        $kueri = "SELECT * FROM ".$this->table_name." ORDER BY waktu DESC";
+        $kueri = "SELECT * FROM ".$this->table_name."";
         $hasil = $this->db->query($kueri) or die ("Error ".$this->db->connect_error);
         http_response_code(200);
         $data = array();
