@@ -38,10 +38,8 @@ $resultAll= isset($getAll['data']) ? $getAll['data'] : [];
 				<div id="container1">
 					<br>
 				</div>
-				<div id="container2">
-						
-				</div>
-									</div>
+				<div id="container2"></div>
+			</div>
 		</div>
 	</body>
 </html>
@@ -49,70 +47,81 @@ $resultAll= isset($getAll['data']) ? $getAll['data'] : [];
 	<?php
 		foreach($resultAll as $result){
 			echo($result['suhu']);'<br>';
-			$result['kelembapan_tanah'];
-			$result['ph'];
-			$result['waktu'];
+			$result['suhu'];
+			echo"
+			<script>
+			// var data_ph = $result[suhu];
+				var chart = new Highcharts.Chart({
+					  chart: {
+						 renderTo: 'container1'
+					  },
+					  title: {
+							text: 'Grafik Data Suhu Harian'
+						},
+	   
+					xAxis: {
+						title: {
+						   enabled: true,
+						   text: 'Hours of the Day'
+						   },
+						   type: 'datetime',
+						   showFirstLabel:true,
+						   showLastLabel:true,
+						   min:Date.UTC(2020,2,18,6,0,0,0),
+						   minRange: 24 * 360 * 100,
+						   dateTimeLabelFormats : {
+							   hour: '%I %p',
+							   minute: '%I:%M %p'
+							   }
+					},
+					  series: [{	
+					   	pointInterval: 3600 * 1000,
+						 pointStart:Date.UTC(2020,2,18,6,0,0,0), 
+						data: [($result[suhu])]
+					  }]
+			   });
+		   </script>
+
+		   <script>
+		   // var data_ph = $result[suhu];
+			   var chart = new Highcharts.Chart({
+					 chart: {
+						renderTo: 'container2'
+					 },
+					 title: {
+						   text: 'Grafik Data Suhu Harian'
+					   },
+	  
+				   xAxis: {
+					   title: {
+						  enabled: true,
+						  text: 'Hours of the Day'
+						  },
+						  type: 'datetime',
+						  showFirstLabel:true,
+						  showLastLabel:true,
+						  min:Date.UTC(2020,2,18,6,0,0,0),
+						  minRange: 24 * 360 * 100,
+						  dateTimeLabelFormats : {
+							  hour: '%I %p',
+							  minute: '%I:%M %p'
+							  }
+				   },
+					 series: [{	
+						pointInterval: 3600 * 1000,
+						pointStart:Date.UTC(2020,2,18,6,0,0,0), 
+					   	data: [10, 11, 100, 1000]
+					 }]
+			  });
+		  </script>
+		   ";
 		}
-		print_r($result);
 	?>
-	
-<script>
-	 var data_suhu = <?php echo $result['suhu']; ?>;
-	 	var chart = new Highcharts.Chart({
-	 	      chart: {
-	 	         renderTo: 'container1'
-	 	      },
-	 		  title: {
-	 	            text: 'Grafik Data Suhu Harian'
-	 	        },
-			
-	 		  xAxis: {
-	 	    title: {
-	 	        enabled: true,
-	 	        text: 'Hours of the Day'
-	 	    },
-	 	    type: 'datetime',
-
-	 	    dateTimeLabelFormats : {
-	 	        hour: '%I %p',
-		        minute: '%I:%M %p'
-	 	    }
-	 	},
-	 	      series: [{	
-	 			data: [data_suhu]
-	 	      }]
-		});
-	</script>
 
 
-<script>
-	 var data_ph = <?php echo $result['ph']; ?>;
-	 	var chart = new Highcharts.Chart({
-	 	      chart: {
-	 	         renderTo: 'container2'
-	 	      },
-	 		  title: {
-	 	            text: 'Grafik Data Suhu Harian'
-	 	        },
-			
-	 		  xAxis: {
-	 	    title: {
-	 	        enabled: true,
-	 	        text: 'Hours of the Day'
-	 	    },
-	 	    type: 'datetime',
 
-	 	    dateTimeLabelFormats : {
-	 	        hour: '%I %p',
-		        minute: '%I:%M %p'
-	 	    }
-	 	},
-	 	      series: [{	
-
-	 			data: [data_ph]
-	 	      }]
-		});
-	</script>
+<?php echo "ini";
+ print_r($result['suhu']); ?>
 
 <!-- $(function () {
   var chart = new Highcharts.Chart({

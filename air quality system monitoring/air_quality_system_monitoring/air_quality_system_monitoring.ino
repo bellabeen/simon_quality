@@ -35,6 +35,7 @@ float mqResistance;
 float mq2readCO;
 float mq2readMethane;
 float mq9readMethane;
+String data;  
 
 float rs;
 const float ro;
@@ -63,8 +64,6 @@ float calcVoltage = 0;
 float dustDensity = 0;
 
 
-
-
 char server[] = "latihanarjun.dx.am";
 EthernetClient client; 
 //IPAddress ip(192,168,0,177); 
@@ -74,10 +73,9 @@ EthernetClient client;
 
 void setup() {
 Serial.begin(9600);
-    
     {
       //pinMode(buzzer, OUTPUT);
-        Serial.println("Initialize Ethernet with DHCP:");
+      Serial.println("Initialize Ethernet with DHCP:");
       if (Ethernet.begin(mac) == 0) {
         Serial.println("Failed to configure Ethernet using DHCP");
         // Check for Ethernet hardware present
@@ -107,8 +105,9 @@ Serial.begin(9600);
       }
   
       Serial.println("still working here");
+      // data = ""; //test code baru
   delay(1000);
-}
+  }
 }
 //------------------------------------------------------------------------------
 
@@ -119,7 +118,7 @@ void loop(){
 //    delay(30000);
 //    noTone(buzzer);
 //    delay(30000);
-//  
+//
   //DHT
     humidityData = dht.readHumidity();
     temperatureData = dht.readTemperature(); 
@@ -212,14 +211,21 @@ void loop(){
 //    client.print(mq2readMethane);
 //    Serial.println(mq2readMethane);
 
-
+    // data = String(humidityData) + "&temperature=" + String(temperatureData) + "&nilai_amonia_sulfida_benzena=" + String(mqPPM) + 
+    //   "&resistansi_amonia_sulfida_benzena=" + String(mqResistance) + "&nilai_gas_lpg=" + String(LPGData) + 
+    //   "&nilai_asap=" + String(smokeData) + "&nilai_karbonmonoksida=" + String(mq2readCO) ;
     
     client.print(" ");      //SPACE BEFORE HTTP/1.1
     client.print("HTTP/1.1");
     client.println();
     client.println("Host: latihanarjun.dx.am");
     client.println("Connection: close");
-    client.println();
+    client.print("Content-Length: ");
+		// client.println(data.length());
+		// client.println(); 
+		// client.println(data); 
+    // Serial.print(data);
+    // client.println();
   } else {
     // if you didn't get a connection to the server:
     Serial.println("connection failed");
