@@ -101,7 +101,7 @@ void loop() {
   //Mathematical conversion from ADC to pH
   //rumus didapat berdasarkan datasheet 
   outputpHValue = (-0.0693*sensorpHValue)+7.3855;
-
+  
   //print the results to the serial monitor:
   Serial.print("sensor ADC= ");
   Serial.print(sensorpHValue);

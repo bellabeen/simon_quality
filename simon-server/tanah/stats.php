@@ -81,39 +81,6 @@ $resultAll= isset($getAll['data']) ? $getAll['data'] : [];
 					  }]
 			   });
 		   </script>
-
-		   <script>
-		   // var data_ph = $result[suhu];
-			   var chart = new Highcharts.Chart({
-					 chart: {
-						renderTo: 'container2'
-					 },
-					 title: {
-						   text: 'Grafik Data Suhu Harian'
-					   },
-	  
-				   xAxis: {
-					   title: {
-						  enabled: true,
-						  text: 'Hours of the Day'
-						  },
-						  type: 'datetime',
-						  showFirstLabel:true,
-						  showLastLabel:true,
-						  min:Date.UTC(2020,2,18,6,0,0,0),
-						  minRange: 24 * 360 * 100,
-						  dateTimeLabelFormats : {
-							  hour: '%I %p',
-							  minute: '%I:%M %p'
-							  }
-				   },
-					 series: [{	
-						pointInterval: 3600 * 1000,
-						pointStart:Date.UTC(2020,2,18,6,0,0,0), 
-					   	data: [10, 11, 100, 1000]
-					 }]
-			  });
-		  </script>
 		   ";
 		}
 	?>

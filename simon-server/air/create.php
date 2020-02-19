@@ -31,9 +31,6 @@ $result = $sensor->create();
 $format= new DataFormat();
 echo $format->asJSON($result);
 
-
-
-
 // function storeInDB($temperature, $humidity, $nilai_amonia_sulfida_benzena, $resistansi_amonia_sulfida_benzena, 
 // $nilai_gas_lpg, $nilai_asap, $nilai_karbonmonoksida, $nilai_gas_metana){
 //  $query = "INSERT INTO log set humidity='".$humidity."', temperature='".$temperature."',
