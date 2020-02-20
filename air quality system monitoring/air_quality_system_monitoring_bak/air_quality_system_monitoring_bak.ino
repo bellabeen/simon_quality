@@ -5,8 +5,7 @@
 #include "MQ2.h"
 #include <SPI.h>
 #include <Ethernet.h>
-#include "Time.h"
-#include <Udp.h>
+
 
 
 byte mac[] = { 0x98, 0xDA, 0xC4, 0x99, 0x7A, 0xE6 }; //Setting MAC Address
@@ -37,12 +36,6 @@ float rs;
 const float ro;
 float lgppm;
 int ppm;
-
-
-//date
-const char* ntpServer = "asia.pool.ntp.org";
-const long  gmtOffset_sec = 25200;
-const int   daylightOffset_sec = 25200;
 
 //void speedBuzzer(int waktu);
 //const int pinBuzzer = 9;
@@ -77,16 +70,6 @@ EthernetClient client;
 
 /* Setup for Ethernet and RFID */
 
-void printLocalTime()
-{
-  struct tm timeinfo;
-  if(!getLocalTime(&timeinfo)){
-    Serial.println("Failed to obtain time");
-    return;
-  }
-  Serial.println(&timeinfo, "%A, %B %d %Y %H:%M:%S");
-}
-
 void setup() {
 Serial.begin(9600);
      {Serial.println("Initialize Ethernet with DHCP:");
@@ -117,10 +100,7 @@ Serial.begin(9600);
         // if you didn't get a connection to the server:
         Serial.println("connection failed to server");
       }
-
-      //init and get the time
-  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
-  printLocalTime();
+  
       Serial.println("still working here");
   delay(1000);
 }
@@ -130,8 +110,6 @@ Serial.begin(9600);
 
 /* Infinite Loop */
 void loop(){
-
-  printLocalTime();
 //    for ( ulang = 0; ulang < 20; ulang++)
 //      speedBuzzer(250);
 //    
@@ -185,8 +163,8 @@ void loop(){
    if (client.connect(server, 80)) {
     Serial.println("connected");
     // Make a HTTP request:
-    Serial.print("GET /simon-server/udara/create.php?humidity=");
-    client.print("GET /simon-server/udara/create.php?humidity=");     //YOUR URL
+    Serial.print("GET /testcode/sensor.php?humidity=");
+    client.print("GET /testcode/sensor.php?humidity=");     //YOUR URL
 
     //DHT11
     Serial.println(humidityData);
@@ -233,8 +211,6 @@ void loop(){
     client.print("HTTP/1.1");
     client.println();
     client.println("Host: latihanarjun.dx.am");
-    client.println("User-Agent: Arduino/1.0");
-    client.println("Content-Type: application/x-www-form-urlencoded");
     client.println("Connection: close");
     client.println();
   } else {
