@@ -7,10 +7,18 @@ $sensor = new Sensor();
 $format=new DataFormat();
 $get=$sensor->getAll();
 $resultArray = isset($get['data']) ? $get['data'] : [];
+date_default_timezone_set("Asia/Bangkok");
+echo date_default_timezone_get();
 ?>
+
+<?php
+
+?>
+
+
 <html>
 	<head>
-		<title>Monitoring Suhu GGP</title>
+		<title>Sistem Monitoring</title>
 		<link rel="stylesheet" href="./include/css/style.css">
 		<link rel="stylesheet" href="./include/css/bootstrap.css">
 		<!-- <meta http-equiv="refresh" content="3"> -->

@@ -47,7 +47,9 @@ $resultAll= isset($getAll['data']) ? $getAll['data'] : [];
 	<?php
 		foreach($resultAll as $result){
 			echo($result['suhu']);'<br>';
+			echo($result['waktu']);'<br>';
 			$result['suhu'];
+			$result['waktu'];
 			echo"
 			<script>
 			// var data_ph = $result[suhu];
@@ -67,7 +69,7 @@ $resultAll= isset($getAll['data']) ? $getAll['data'] : [];
 						   type: 'datetime',
 						   showFirstLabel:true,
 						   showLastLabel:true,
-						   min:Date.UTC(2020,2,18,6,0,0,0),
+						   min:Date.UTC(2020,1,21),
 						   minRange: 24 * 360 * 100,
 						   dateTimeLabelFormats : {
 							   hour: '%I %p',
@@ -75,8 +77,9 @@ $resultAll= isset($getAll['data']) ? $getAll['data'] : [];
 							   }
 					},
 					  series: [{	
-					   	pointInterval: 3600 * 1000,
-						 pointStart:Date.UTC(2020,2,18,6,0,0,0), 
+					   	pointInterval: 900 * 1000,
+						 pointStart:Date.UTC(2020,1,21,), 
+						// data: [10, 7, 9, 15]
 						data: [($result[suhu])]
 					  }]
 			   });
@@ -88,7 +91,9 @@ $resultAll= isset($getAll['data']) ? $getAll['data'] : [];
 
 
 <?php echo "ini";
- print_r($result['suhu']); ?>
+ print_r($result['suhu']);
+ echo "tanggal";
+ print_r($result['waktu']); ?>
 
 <!-- $(function () {
   var chart = new Highcharts.Chart({

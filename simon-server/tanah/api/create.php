@@ -15,6 +15,8 @@ $kelembapan_tanah = isset($_GET['kelembapan_tanah']) ? $_GET['kelembapan_tanah']
 $ph = isset($_GET['ph']) ? $_GET['ph']: null;
 $sensor->setValue($suhu, $kelembapan_tanah, $ph);
 $result = $sensor->create();
+date_default_timezone_set("Asia/Bangkok");
+echo date_default_timezone_get();
 echo $format->asJSONAll($result);
 
 ?>
