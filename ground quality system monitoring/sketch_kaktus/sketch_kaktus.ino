@@ -22,7 +22,7 @@ float humidityData;
 float temperatureData;
 int sensorValue;
 
-char server[] = "latihanarjun.dx.am";
+char server[] = "52.187.8.14";
 EthernetClient client;
 
 
@@ -99,7 +99,7 @@ void setup(){
   }
 
   Sending_To_phpmyadmindatabase(); 
-  delay(30000); // interval
+  delay(60000); // interval
 }
 
 
@@ -108,20 +108,22 @@ void Sending_To_phpmyadmindatabase()   //CONNECTING WITH MYSQL
    if (client.connect(server, 80)) {
     Serial.println("connected");
     // Make a HTTP request:
-    Serial.print("GET /simon-server/tanah/create.php?humidity=");
-    client.print("GET /simon-server/tanah/create.php?humidity=");     //YOUR URL
+    Serial.print("GET /simon-server/tanah/api/create.php?suhu=");
+    client.print("GET /simon-server/tanah/api/create.php?suhu=");     //YOUR URL
 
     //DHT11
-    Serial.println(humidityData);
-    client.print(humidityData);
-    client.print("&temperature=");
-    Serial.println("&temperature=");
     client.print(temperatureData);
     Serial.println(temperatureData);
 
+    client.print("&kelembapan_udara=");
+    Serial.println("&kelembapan_udara=");
+    Serial.println(humidityData);
+    client.print(humidityData);
+
+
     //Soil Moisture
-    client.print("&kelembaban_tanah=");
-    Serial.println("&kelembaban_tanah=");
+    client.print("&kelembapan_tanah=");
+    Serial.println("&kelembapan_tanah=");
     client.print(sensorValue);
     Serial.println(sensorValue);
 
@@ -142,7 +144,7 @@ void Sending_To_phpmyadmindatabase()   //CONNECTING WITH MYSQL
     client.print(" ");      //SPACE BEFORE HTTP/1.1
     client.print("HTTP/1.1");
     client.println();
-    client.println("Host: latihanarjun.dx.am");
+    client.println("Host: 52.187.8.14");
     client.println("User-Agent: Arduino/1.0");
     client.println("Content-Type: application/x-www-form-urlencoded");
     client.println("Connection: close");
