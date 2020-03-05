@@ -16,13 +16,14 @@ float outputpHValue = 0.0;        //pH value after conversion
 int rainPin = A1; //pin Soil Moisture A1
 int greenLED = 6;
 int redLED = 7;
+
 // you can adjust the threshold value
 int thresholdValue = 400;
 float humidityData;
 float temperatureData;
 int sensorValue;
 
-char server[] = "52.187.8.14";
+char server[] = "52.187.8.14"; //alamat web
 EthernetClient client;
 
 
